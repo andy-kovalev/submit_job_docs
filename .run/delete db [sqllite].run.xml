@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="delete db [sqllite]" type="BatchConfigurationType" factoryName="Batch">
+    <module name="submit_job_docs" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="./tests/database" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="del /F /S /Q *" />
+    <option name="PARAMETERS" value="" />
+    <method v="2" />
+  </configuration>
+</component>
