@@ -1,0 +1,150 @@
+[
+  {
+    "model": "docs_metadata.document",
+    "pk": 1,
+    "fields": {
+      "order_index": 1,
+      "file_prefix": "ФИО",
+      "index_text": null,
+      "text": "Введите свою фамилию и имя",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": true,
+      "buttons": []
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 2,
+    "fields": {
+      "order_index": 2,
+      "file_prefix": "01_паспорт",
+      "index_text": "1",
+      "text": "Приложите копию паспорта. Вторую, третью страницы и страницу с действующей пропиской",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 3,
+    "fields": {
+      "order_index": 3,
+      "file_prefix": "02_снилс",
+      "index_text": "2",
+      "text": "Приложите копию СНИЛС",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 4,
+    "fields": {
+      "order_index": 4,
+      "file_prefix": "03_инн",
+      "index_text": "3",
+      "text": "Приложите копию ИНН",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 5,
+    "fields": {
+      "order_index": 5,
+      "file_prefix": "04_реквизиты_номер_счета",
+      "index_text": "4",
+      "text": "Приложите копию реквизитов номера счета карты для перевода ЗП",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 6,
+    "fields": {
+      "order_index": 6,
+      "file_prefix": "05_справка_2НДФЛ(182Н)",
+      "index_text": "5",
+      "text": "Приложите копию справок с предыдущего места работы\n182Н и 2НДФЛ",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 7,
+    "fields": {
+      "order_index": 7,
+      "file_prefix": "06_документ(диплом)_об_образовании",
+      "index_text": "6",
+      "text": "Приложите копию диплома об образовании\nвысшего или среднего, что есть на руках",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 8,
+    "fields": {
+      "order_index": 8,
+      "file_prefix": "07_военный_билет(приписное_свидетельство)",
+      "index_text": "7",
+      "text": "Приложите копию военного билета или приписного свидетельства",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 9,
+    "fields": {
+      "order_index": 9,
+      "file_prefix": "08_свидетельство_о_рождении_ребенка",
+      "index_text": "8",
+      "text": "Приложите копию свидетельств о рождении детей, если есть",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "docs_metadata.document",
+    "pk": 10,
+    "fields": {
+      "order_index": 10,
+      "file_prefix": "09_трудовоая_книжка(справка_СТД-Р)",
+      "index_text": "9",
+      "text": "Приложите копию трудовой книжки, все заполненные страницы\nесли ведется в электронном виде, то копию справки по форме СТД-Р",
+      "parse_mode": "MARKDOWN",
+      "remove_buttons_before_message": false,
+      "buttons": [
+        3
+      ]
+    }
+  }
+]

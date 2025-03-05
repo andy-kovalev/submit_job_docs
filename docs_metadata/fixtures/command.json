@@ -1,0 +1,52 @@
+[
+  {
+    "model": "docs_metadata.command",
+    "pk": 1,
+    "fields": {
+      "action": "ADD",
+      "name": "ADD_DOCUMENT_COMMAND",
+      "title": "Передать документы",
+      "prefix": "ADD_"
+    }
+  },
+  {
+    "model": "docs_metadata.command",
+    "pk": 2,
+    "fields": {
+      "action": "ADD_NEXT",
+      "name": "ADD_NEXT_DOCUMENT_COMMAND",
+      "title": "Следующий документ",
+      "prefix": "ADDNEXT_"
+    }
+  },
+  {
+    "model": "docs_metadata.command",
+    "pk": 3,
+    "fields": {
+      "action": "END",
+      "name": "END_DOCUMENT_COMMAND",
+      "title": "Закончить подачу документов",
+      "prefix": "END_"
+    }
+  },
+  {
+    "model": "docs_metadata.command",
+    "pk": 4,
+    "fields": {
+      "action": "CANCEL",
+      "name": "CANCEL_COMMAND",
+      "title": "Отмена",
+      "prefix": "CANCEL_"
+    }
+  },
+  {
+    "model": "docs_metadata.command",
+    "pk": 5,
+    "fields": {
+      "action": "HELP",
+      "name": "HELP_COMMAND",
+      "title": "Помощь",
+      "prefix": null
+    }
+  }
+]
