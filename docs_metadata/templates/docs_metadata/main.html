@@ -1,0 +1,35 @@
+{% extends "docs_metadata/base.html" %}
+{% block content %}
+    <!-- popular_catagory_area_start  -->
+    <div class="popular_catagory_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title mb-40">
+                        <h3>Popolar Categories</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-xl-4 col-md-6">
+                    <div class="single_catagory">
+                        <a href="{% url 'metadata_command_list' %}"><h4>Команды</h4></a>
+                        <p>Commands (actions) that can be used to navigate between documents</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-4 col-md-6">
+                    <div class="single_catagory">
+                        <a href="jobs.html"><h4>Welcome company setting</h4></a>
+                        <p>Setting up a welcome text and specifying commands for submitting documents</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-4 col-md-6">
+                    <div class="single_catagory">
+                        <a href="jobs.html"><h4>Documens</h4></a>
+                        <p> <span>10</span>List of documents that must be submitted to the company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

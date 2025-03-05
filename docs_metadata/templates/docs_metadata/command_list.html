@@ -1,0 +1,31 @@
+{% extends "docs_metadata/base.html" %}
+{% block content %}
+    <div class="whole-wrap">
+        <div class="container box_1170">
+            <div class="section-top-border">
+                <h3 class="mb-30">Команды</h3>
+                 <a class="genric-btn primary radius small" href="{% url 'metadata_command_add' %}">+ Добавить</a>
+                <div class="progress-table-wrap">
+                    <div class="progress-table">
+                        <div class="table-head">
+                            <div class="serial">#</div>
+                            <div class="country">action</div>
+                            <div class="country">name</div>
+                            <div class="country">title</div>
+                            <div class="country">prefix</div>
+                        </div>
+                        {% for command in command_list%}
+                        <div class="table-row">
+                            <div class="serial">#</div>
+                            <div class="country">{{command.action}}</div>
+                            <div class="country">{{command.name}}</div>
+                            <div class="country">{{command.title}}</div>
+                            <div class="country">{{command.prefix}}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

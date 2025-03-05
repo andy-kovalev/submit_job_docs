@@ -1,0 +1,10 @@
+{% extends "docs/base.html" %}
+{% load i18n static %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }}{% endblock %}
+{% block login_btn %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-link">Log Out</button>
+    </form>{% endblock %}
+{% block content %}
+{% endblock %}

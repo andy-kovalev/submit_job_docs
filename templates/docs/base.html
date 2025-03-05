@@ -1,0 +1,161 @@
+{% load i18n static %}<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'docs/img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'docs/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'docs/css/slicknav.css' %}">
+
+    <link rel="stylesheet" href="{% static 'docs/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'docs/css/responsive.css' %}"> -->
+    {% block extrastyle %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area" style="background-color:rgba(0, 29, 56, 0.8)">
+                <div class="container-fluid ">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <a href="/">
+                                        <img src="{% static 'docs/img/logo.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-7">
+
+                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="phone_num d-none d-xl-block">
+                                        {% block login_btn %}{% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img src="{% static 'docs/img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                            <p>
+                                {% block footer_contacts %}my@support.com <br>
+                                                           +7 (911) 900-00-00 <br>
+                                                           58, Nevsky st., St.Petersburg {% endblock %}
+                            </p>
+                            <div class="socail_links">
+                                {% block footer_socail_links %} {% endblock %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        {% block footer_title_left_col %} {% endblock %}
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        {% block footer_title_middle_col %} {% endblock %}
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        {% block footer_title_right_col %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/ footer end  -->{% endblock %}
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="{% static 'docs/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'docs/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'docs/js/popper.min.js' %}"></script>
+    <script src="{% static 'docs/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'docs/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'docs/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'docs/js/ajax-form.js' %}"></script>
+    <script src="{% static 'docs/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'docs/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'docs/js/scrollIt.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'docs/js/wow.min.js' %}"></script>
+    <script src="{% static 'docs/js/nice-select.min.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'docs/js/plugins.js' %}"></script>
+    <script src="{% static 'docs/js/gijgo.min.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static 'docs/js/contact.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.form.js' %}"></script>
+    <script src="{% static 'docs/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'docs/js/mail-script.js' %}"></script>
+
+    <script src="{% static 'docs/js/main.js' %}"></script>
+    {% block js_script %} {% endblock %}
+</body>
+
+</html>

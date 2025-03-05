@@ -1,0 +1,43 @@
+{% extends "docs_metadata/base.html" %}
+{% block content %}
+    <div class="whole-wrap">
+        <div class="container box_1170">
+            <div class="section-top-border">
+                <div class="job_details_header">
+                    <h3 class="mb-30">Новая команда</h3>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="descript_wrap white-bg">
+                    {% csrf_token %}                    
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div id="row">
+                            <!-- <p class=input_field">
+                            </p> -->            
+                            <p class=input_field">
+                                {{ form.name }}
+                                {{ form.name.errors }}
+                            </p>            
+                            <p class=input_field">
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </p>            
+                            <p class=input_field">
+                                {{ form.prefix }}
+                                {{ form.prefix.errors }}
+                            </p>
+                        </div>
+                        <div class="submit_btn" >
+                            <button class="boxed-btn3 w-100" type="submit">Сохранить</button>
+                        </div>
+                    </form>        
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
