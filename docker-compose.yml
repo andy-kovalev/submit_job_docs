@@ -1,0 +1,102 @@
+version: '3.8'
+
+networks:
+  submit_job_docs_network:
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./tests/logs:/var/log
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    expose:
+      - 5432
+    ports:
+      - "${DB_PORT}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    container_name: postgres
+    networks:
+      submit_job_docs_network:
+        aliases:
+          - db-postgres
+
+  redis:
+    image: redis:7.4.2-alpine
+    volumes:
+      - redis_data:/data/
+      - ./tests/logs:/var/log
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    expose:
+      - 6379
+    ports:
+      - "${REDIS_CACHE_PORT}:6379"
+    container_name: redis
+    depends_on:
+      - postgres
+    networks:
+      submit_job_docs_network:
+        aliases:
+          - db-redis
+
+  app:
+    build:
+      context: .
+      dockerfile: ./submit_job_docs.Dockerfile
+    #develop:
+    #  watch:
+    #    - path: ./
+    #      action: sync+restart
+    command: gunicorn submit_job_docs.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/usr/src/static/
+      - ./:/usr/src/
+      - ./tests/logs:/var/log
+    expose:
+      - 8000
+    env_file:
+      - ./.env/docker_postgresql_redis.env
+    environment:
+      - DB_HOST=db-postgres
+      - DB_PORT=5432
+      - DEBUG=False
+      - REDIS_CACHE_HOST=db-redis
+      - REDIS_CACHE_PORT=6379
+    container_name: app
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      submit_job_docs_network:
+        aliases:
+          - web-app
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/submit_job_docs/staticfiles/
+    ports:
+      - "80:80"
+    container_name: nginx
+    depends_on:
+      - app
+    networks:
+      submit_job_docs_network:
+        aliases:
+          - web-nginx
