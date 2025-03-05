@@ -57,13 +57,15 @@ def test_constraints_default_create_command(attribute, default_value):
                           'title',))
 @pytest.mark.django_db
 def test_constraints_not_null_create_command(attribute):
-    err_not_null_constraint = 'NOT NULL constraint failed'
+    err_not_null_constraint = ('not', 'null', 'constraint')
 
     with pytest.raises(IntegrityError) as exc_info:
         Command.objects.create(name=None if attribute == 'name' else get_random_string(10),
                                title=None if attribute == 'title' else get_random_string(10),
                                prefix=None if attribute == 'prefix' else get_random_string(10))
-    assert err_not_null_constraint in str(exc_info.value)
+    err_text = str(exc_info.value).lower()
+    assert err_text.__contains__(err_not_null_constraint[0]) and err_text.__contains__(
+        err_not_null_constraint[1]) and err_text.__contains__(err_not_null_constraint[2])
 
 
 @pytest.mark.parametrize('attribute',
@@ -72,7 +74,7 @@ def test_constraints_not_null_create_command(attribute):
                           'prefix',))
 @pytest.mark.django_db
 def test_constraints_unique_create_command(attribute):
-    err_unique_constraint = 'UNIQUE constraint failed'
+    err_unique_constraint = ('unique', 'constraint')
 
     not_unique_text = get_random_string(10)
 
@@ -84,7 +86,8 @@ def test_constraints_unique_create_command(attribute):
         Command.objects.create(name=not_unique_text if attribute == 'name' else get_random_string(10),
                                title=not_unique_text if attribute == 'title' else get_random_string(10),
                                prefix=not_unique_text if attribute == 'prefix' else get_random_string(10))
-    assert err_unique_constraint in str(exc_info.value)
+    err_text = str(exc_info.value).lower()
+    assert err_text.__contains__(err_unique_constraint[0]) and err_text.__contains__(err_unique_constraint[1])
 
 
 @pytest.mark.parametrize(['attribute', 'max_length'],

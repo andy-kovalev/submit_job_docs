@@ -1,8 +1,10 @@
 import pytest
+from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.db.utils import IntegrityError
+from django.db.utils import IntegrityError, DataError
 
 from tests import get_random_string
+from tests.docs_metadata.models import SQLITE_DB_ENGINE
 from docs_metadata.models import Document, ParseMode
 
 
@@ -58,7 +60,7 @@ def test_constraints_default_create_document(command_factory, attribute, default
                           'file_prefix',))
 @pytest.mark.django_db
 def test_constraints_not_null_create_document(command_factory, attribute):
-    err_not_null_constraint = 'NOT NULL constraint failed'
+    err_not_null_constraint = ('not', 'null', 'constraint')
 
     remove_buttons_before_message_param = None if attribute == 'remove_buttons_before_message' else False
     with pytest.raises(IntegrityError) as exc_info:
@@ -66,7 +68,9 @@ def test_constraints_not_null_create_document(command_factory, attribute):
                                 file_prefix=None if attribute == 'file_prefix' else get_random_string(10),
                                 index_text=None if attribute == 'index_text' else get_random_string(5),
                                 remove_buttons_before_message=remove_buttons_before_message_param)
-    assert err_not_null_constraint in str(exc_info.value)
+    err_text = str(exc_info.value).lower()
+    assert err_text.__contains__(err_not_null_constraint[0]) and err_text.__contains__(
+        err_not_null_constraint[1]) and err_text.__contains__(err_not_null_constraint[2])
 
 
 @pytest.mark.parametrize(['attribute', 'max_length'],
@@ -74,7 +78,11 @@ def test_constraints_not_null_create_document(command_factory, attribute):
                           ('index_text', 5),))
 @pytest.mark.django_db
 def test_constraints_max_length_create_document(command_factory, attribute, max_length):
-    with pytest.raises(ValidationError) as exc_info:
+    if settings.DATABASES['default']['ENGINE'] == SQLITE_DB_ENGINE:
+        exception_class = ValidationError
+    else:
+        exception_class = DataError
+    with pytest.raises(exception_class) as exc_info:
         company = Document.objects.create(
             order_index=1,
             file_prefix=get_random_string(max_length + 1) if attribute == 'file_prefix' else get_random_string(10),
