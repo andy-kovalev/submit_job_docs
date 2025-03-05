@@ -1,0 +1,9 @@
+Django==5.0.6
+djangorestframework==3.15.1
+django-filter==24.2
+psycopg2-binary==2.9.10
+python-dotenv==1.0.1
+drf-extra-fields==3.7.0
+django-enumchoicefield==3.0.1
+django-rest-passwordreset==1.4.1
+gunicorn==22.0.0
