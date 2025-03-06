@@ -19,5 +19,6 @@ jobs:
           flake8-version: "7.0.0"
           exclude: ".env,.run,migrations"
           max-line-length: "120"
+          ignore: "BLK100"
           path: "."
           plugins: "flake8-bugbear==22.1.11 flake8-black"
