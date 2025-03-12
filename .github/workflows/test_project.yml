@@ -86,12 +86,7 @@ jobs:
         run: pip install -r requirements-test.txt
 
       - name: Pytest Test
-        run: |
-          python3 manage.py makemigrations
-          python3 manage.py migrate
-          python3 manage.py createsuperuser --username admin --email admin@host.local --skip-checks --noinput
-          python3 manage.py collectstatic --noinput
-          python3 -m pytest --cov=submit_job_docs --cov=docs_metadata --cov=docs_api --cov=docs_site  --cov-report term
+        run: python3 -m pytest --cov=submit_job_docs --cov=docs_metadata --cov=docs_api --cov=docs_site  --cov-report term
         env:
           DJANGO_SUPERUSER_PASSWORD: admin
           SECRET_KEY: ${{ env.SECRET_KEY }}
