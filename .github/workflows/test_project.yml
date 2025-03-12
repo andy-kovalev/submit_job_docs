@@ -9,11 +9,13 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
+
       - name: Set up Python environment
         uses: actions/setup-python@v4
         with:
           python-version: "3.13.1"
-      - name: flake8 Lint
+
+      - name: Flake8 Lint
         uses: py-actions/flake8@v2
         with:
           flake8-version: "7.1.2"
@@ -21,3 +23,89 @@ jobs:
           max-line-length: "120"
           path: "."
           plugins: "flake8-bugbear==24.12.12"
+
+  tests:
+    runs-on: ubuntu-latest
+    name: pytest(django) Test
+    env:
+      SECRET_KEY: "django-github-test-sha1-1e96dc46555ea6efababeb7b0fddf020953153b6"
+      TIME_ZONE: "Europe/Moscow"
+
+      DEBUG: True
+      ALLOWED_HOSTS: *,127.0.0.1
+
+      DB_ENGINE: "django.db.backends.postgresql"
+      DB_NAME: submit_job_docs
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: submit_job_docs
+      DB_PASSWORD: submit_job_docs
+
+      REDIS_CACHE_HOST: localhost
+      REDIS_CACHE_PORT: 6379
+
+      THROTTLE_RATE_USER_PERMINUTE: 10000
+      THROTTLE_RATE_ANON_PERMINUTE: 10000
+      PAGINATION_PAGE_SIZE: 100
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: ${{ env.DB_NAME }}
+          POSTGRES_USER: ${{ env.DB_USER }}
+          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
+        ports:
+          - ${{ env.DB_PORT }}:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7.4.2
+        env:
+          ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - ${{ env.REDIS_CACHE_PORT }}:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13.1"
+
+      - name: Set up Python dependencies
+        run: pip install -r requirements-test.txt
+
+      - name: Pytest Test
+        run: |
+          python3 manage.py makemigrations
+          python3 manage.py migrate
+          python3 manage.py createsuperuser --username admin --email admin@host.local --skip-checks --noinput
+          python3 manage.py collectstatic --noinput
+          python3 -m pytest --cov=submit_job_docs --cov=docs_metadata --cov=docs_api --cov=docs_site  --cov-report term
+        env:
+          DJANGO_SUPERUSER_PASSWORD: admin
+          SECRET_KEY: ${{ env.SECRET_KEY }}
+          TIME_ZONE: ${{ env.TIME_ZONE }}
+          DEBUG: ${{ env.DEBUG }}
+          ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
+          DB_ENGINE: ${{ env.DB_ENGINE }}
+          DB_NAME: ${{ env.DB_NAME }}
+          DB_HOST: ${{ env.DB_HOST }}
+          DB_PORT: ${{ env.DB_PORT }}
+          DB_USER: ${{ env.DB_USER }}
+          DB_PASSWORD: ${{ env.DB_PASSWORD }}
+          REDIS_CACHE_HOST: ${{ env.REDIS_CACHE_HOST }}
+          REDIS_CACHE_PORT: ${{ env.REDIS_CACHE_PORT }}
+          THROTTLE_RATE_USER_PERMINUTE: ${{ env.THROTTLE_RATE_USER_PERMINUTE }}
+          THROTTLE_RATE_ANON_PERMINUTE: ${{ env.THROTTLE_RATE_ANON_PERMINUTE }}
+          PAGINATION_PAGE_SIZE: ${{ env.PAGINATION_PAGE_SIZE }}
