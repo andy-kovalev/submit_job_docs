@@ -32,7 +32,7 @@ jobs:
       TIME_ZONE: "Europe/Moscow"
 
       DEBUG: True
-      ALLOWED_HOSTS: *,127.0.0.1
+      ALLOWED_HOSTS: "*,127.0.0.1"
 
       DB_ENGINE: "django.db.backends.postgresql"
       DB_NAME: submit_job_docs
