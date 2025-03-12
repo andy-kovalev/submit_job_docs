@@ -4,14 +4,14 @@ from rest_framework.test import APIClient
 from rest_framework.authtoken.models import Token
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def default_test_user():
     return {"username": "test_user",
             "password": "test_password",
             "email": "test@email.local"}
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 @pytest.mark.django_db
 def create_user(django_user_model):
     def make_user(**kwargs):
@@ -20,14 +20,14 @@ def create_user(django_user_model):
     return make_user
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def not_authorized_api_client():
     api_client = APIClient()
 
     return api_client
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 @pytest.mark.django_db
 def authorized_api_client(create_user, default_test_user):
     user = create_user(username=f"api_{default_test_user['username']}",
@@ -42,14 +42,14 @@ def authorized_api_client(create_user, default_test_user):
     return api_client
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def not_authorized_ui_client():
     ui_client = Client()
 
     return ui_client
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 @pytest.mark.django_db
 def authorized_ui_client(create_user, default_test_user):
     user = create_user(username=f"ui_{default_test_user['username']}",
