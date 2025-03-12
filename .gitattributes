@@ -1,0 +1,9 @@
+.env/* linguist-vendored
+.github/* linguist-vendored
+.run/* linguist-vendored
+htmlcov/* linguist-vendored
+nginx/* linguist-vendored
+static/* linguist-vendored
+templates/* linguist-vendored
+templates_static/* linguist-vendored
+.github/* linguist-vendored
