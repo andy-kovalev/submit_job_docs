@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.version }}
+          python-version: "3.13.1"
 
       - name: Flake8 Lint
         uses: py-actions/flake8@v2
@@ -27,9 +27,8 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        version: [ "3.12", "3.13.1" ]
-    runs-on: ${{ matrix.os }}
+        version: [ "3.10", "3.12", "3.13.1" ]
+    runs-on: ubuntu-latest
     name: pytest(django) Test
     env:
       DEBUG: ${{ vars.TEST_DEBUG }}
