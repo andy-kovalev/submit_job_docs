@@ -2,8 +2,8 @@ import pytest
 from django.test import RequestFactory
 from django.urls import Resolver404
 
-from asgi import application as asgi
-from wsgi import application as wsgi
+from submit_job_docs.asgi import application as asgi
+from submit_job_docs.wsgi import application as wsgi
 
 
 def test_asgi_request(rf: RequestFactory):
