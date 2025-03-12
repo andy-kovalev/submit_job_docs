@@ -4,7 +4,7 @@ import pytest
 from django.urls import reverse as url_reverse
 
 from docs_metadata.urls import docs_metadata_url
-from urls import url_path
+from submit_job_docs.urls import url_path
 
 
 @pytest.mark.django_db

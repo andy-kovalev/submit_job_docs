@@ -5,7 +5,7 @@ import pytest
 from docs_metadata.models import CompanyWelcome
 from docs_metadata.urls import docs_metadata_url
 from tests import get_random_string
-from urls import api_url_path
+from submit_job_docs.urls import api_url_path
 
 
 @pytest.mark.django_db

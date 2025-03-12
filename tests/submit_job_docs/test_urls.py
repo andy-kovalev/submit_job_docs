@@ -1,4 +1,4 @@
-from urls import api_url_path, correct_url_path
+from submit_job_docs.urls import api_url_path, correct_url_path
 
 
 def test_api_url_path(settings):

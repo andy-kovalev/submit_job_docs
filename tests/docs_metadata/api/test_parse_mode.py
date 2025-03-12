@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 from docs_metadata.urls import docs_metadata_url
-from urls import api_url_path
+from submit_job_docs.urls import api_url_path
 
 
 def test_get_parse_modes(not_authorized_api_client, authorized_api_client):

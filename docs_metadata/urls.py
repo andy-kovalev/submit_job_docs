@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from docs_metadata.views_api import ActionView, ParseModeView
 from docs_metadata.views_api import CommandViewSet, CompanyWelcomeViewSet, DocumentViewSet
 from docs_metadata.views import CommandListView, CommandCreateView
-from urls import api_url_path, url_path
+from submit_job_docs.urls import api_url_path, url_path
 
 docs_metadata_url = 'metadata'
 
