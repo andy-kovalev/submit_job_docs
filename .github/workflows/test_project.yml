@@ -3,12 +3,10 @@ name: Test project on push
 on: [push, pull_request]
 
 jobs:
-  lint_matrix:
+  flake8-lint:
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
         version: [ "3.10", "3.12", "3.13.1" ]
-  flake8-lint:
     runs-on: ubuntu-latest
     name: flake8(bugbear) Lint
     steps:
@@ -30,11 +28,10 @@ jobs:
           plugins: "flake8-bugbear==24.12.12"
 
   tests:
-    test_matrix:
-      strategy:
-        matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
-          version: [ "3.10", "3.12", "3.13.1"]
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ "3.10", "3.12", "3.13.1" ]
     runs-on: ${{ matrix.os }}
     name: pytest(django) Test
     env:
