@@ -65,7 +65,7 @@ jobs:
           DB_PORT: ${{ env.DB_PORT }}
           REDIS_CACHE_PORT: ${{ env.REDIS_CACHE_PORT }}
         ports:
-          - ${{ env.DB_PORT }}:5432
+          - ["${{ env.DB_PORT }}:5432"]
         options: >-
           --health-cmd "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
           --health-interval 5s
@@ -76,7 +76,7 @@ jobs:
         env:
           ALLOW_EMPTY_PASSWORD: yes
         ports:
-          - ${{ env.REDIS_CACHE_PORT }}:6379
+          - ["${{ env.REDIS_CACHE_PORT }}:6379"]
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 5s
