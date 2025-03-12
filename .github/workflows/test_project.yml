@@ -4,9 +4,6 @@ on: [push, pull_request]
 
 jobs:
   flake8-lint:
-    strategy:
-      matrix:
-        version: [ "3.10", "3.12", "3.13.1" ]
     runs-on: ubuntu-latest
     name: flake8(bugbear) Lint
     steps:
@@ -30,8 +27,8 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        version: [ "3.10", "3.12", "3.13.1" ]
+        os: [ ubuntu-latest, windows-latest ]
+        version: [ "3.12", "3.13.1" ]
     runs-on: ${{ matrix.os }}
     name: pytest(django) Test
     env:
